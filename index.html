@@ -79,23 +79,45 @@
     </div>
     <div class="item">
       <input type="checkbox">
-      <p>Try to do it without any libraries</p>
+      <p>Isn't that cool?</p>
     </div>
     <div class="item">
       <input type="checkbox">
-      <p>Just regular JavaScript</p>
+      <p>It works from the bottom up as well</p>
     </div>
     <div class="item">
       <input type="checkbox">
-      <p>Good Luck!</p>
+      <p>Give it a try</p>
     </div>
     <div class="item">
       <input type="checkbox">
-      <p>Don't forget to tweet your result!</p>
+      <p>See?</p>
     </div>
   </div>
 
 <script>
+  const checkboxes = document.querySelectorAll('.inbox [type="checkbox"]');
+
+  let lastChecked;
+
+  function handleCheck(e){
+    let inBetween = false;
+    if(e.shiftKey && this.checked){
+      checkboxes.forEach(checkbox => {
+        if(checkbox === this || checkbox === lastChecked){
+          inBetween = !inBetween;
+        }
+
+        if(inBetween){
+          checkbox.checked = true;
+        }  
+      });
+    }
+
+    lastChecked = this;
+  }
+  
+  checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleCheck));
 </script>
 </body>
 </html>
